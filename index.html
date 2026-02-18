@@ -35,4 +35,546 @@ const CONTENT = {
   title: "Outcome-Led Product Operating Model",
   subtitle: "A consistent structure for organising products, delivering work, and managing performance",
 
-  // ── PRODUCT HIERARCHY ─
+  // ── PRODUCT HIERARCHY ─────────────────────────────────────────────
+  // Each level has a name, subtitle, colour, and two lists of detail
+  // bullets that appear when you click on it.
+
+  hierarchy: [
+    {
+      name: "Product Organisation",
+      desc: "Overarching structure",
+      color: "#1A3263",
+      detailTitle: "Defines",
+      details: [
+        "The scope of the overall product portfolio",
+        "Strategic alignment to organisational mission and goals",
+        "Investment principles and budget allocation frameworks",
+        "Cross-portfolio governance and decision-making authority",
+      ],
+      outputs: [
+        "Product vision and strategy document",
+        "Portfolio investment framework",
+        "Organisational product operating model",
+        "Annual product roadmap priorities",
+      ],
+    },
+    {
+      name: "Portfolios",
+      desc: "e.g. Digital Services, Supporter Mgmt",
+      color: "#2271B3",
+      detailTitle: "Activities",
+      details: [
+        "Digital Services — public-facing information, tools and support",
+        "Supporter Management — fundraising, donations, events",
+        "Applications — internal tools, CRM, case management",
+        "Data & Analytics — dashboards, pipelines, reporting",
+      ],
+      outputs: [
+        "Setting portfolio-level objectives and KPIs",
+        "Prioritising investment across sub-portfolios",
+        "Managing cross-product dependencies",
+        "Reporting performance to senior leadership",
+      ],
+    },
+    {
+      name: "Sub-portfolios",
+      desc: "e.g. Website, digital channels",
+      color: "#3589C8",
+      detailTitle: "Responsibilities",
+      details: [
+        "Public website (alzheimers.org.uk)",
+        "Dementia Connect digital channels",
+        "Online Community / Forum",
+        "Dementia Directory service finder",
+      ],
+      outputs: [
+        "Product-level vision and outcome-led roadmap",
+        "User research and insight for specific user groups",
+        "Backlog management and prioritisation",
+        "Ongoing performance monitoring and iteration",
+      ],
+    },
+    {
+      name: "Initiatives",
+      desc: "Outcome-focused work",
+      color: "#4A9FD9",
+      detailTitle: "Characteristics",
+      details: [
+        "Framed as an outcome, not a feature ('Improve first-contact resolution' not 'Build chatbot')",
+        "Has clear success measures and user value",
+        "Aligned to portfolio-level objectives",
+        "Sized to be deliverable within a quarter or planning cycle",
+      ],
+      outputs: [
+        "Initiative brief (problem, hypothesis, success criteria)",
+        "Outcome-led roadmap placement",
+        "Discovery findings and user research evidence",
+        "Business case or investment justification",
+      ],
+    },
+    {
+      name: "Epics & Stories",
+      desc: "Deliverable units of work",
+      color: "#F0AB00",
+      textDark: true,
+      detailTitle: "Structure",
+      details: [
+        "A large body of work that can be broken down into stories",
+        "Typically spans multiple sprints",
+        "Has clear acceptance criteria and definition of done",
+        "Tracked on team-level delivery boards",
+      ],
+      outputs: [
+        "The smallest unit of deliverable value",
+        "Written from the user's perspective (As a... I want... So that...)",
+        "Estimable, testable, and completable in a single sprint",
+        "Linked back to their parent epic and initiative",
+      ],
+    },
+  ],
+
+  // ── CROSS-CUTTING WORKFLOWS ───────────────────────────────────────
+
+  workflows: [
+    {
+      num: "01",
+      title: "Product Strategy Creation",
+      desc: "How opportunities are identified, shaped, and aligned to goals",
+      keyMoments: [
+        "Horizon scanning and opportunity identification",
+        "Strategic alignment review with leadership",
+        "Prioritisation and investment decision",
+        "Strategy sign-off and communication",
+      ],
+      artefacts: [
+        "Vision & strategy docs",
+        "Opportunity assessments",
+        "Prioritisation frameworks",
+        "Investment cases",
+      ],
+    },
+    {
+      num: "02",
+      title: "Product Delivery",
+      desc: "How initiatives move from discovery through to delivery",
+      keyMoments: [
+        "Discovery kick-off and problem framing",
+        "Solution shaping and design review",
+        "Sprint planning and backlog refinement",
+        "Release review and go/no-go decision",
+      ],
+      artefacts: [
+        "Discovery briefs",
+        "Outcome-led roadmaps",
+        "Sprint plans & boards",
+        "Release notes",
+      ],
+    },
+    {
+      num: "03",
+      title: "Performance Monitoring",
+      desc: "How success is measured and products continuously improved",
+      keyMoments: [
+        "KPI baseline setting and target agreement",
+        "Regular performance review cadence",
+        "Insight synthesis and recommendation",
+        "Iteration planning based on findings",
+      ],
+      artefacts: [
+        "KPI dashboards",
+        "User feedback reports",
+        "Analytics reviews",
+        "Iteration backlogs",
+      ],
+    },
+  ],
+
+  // ── DELIVERY MODES ────────────────────────────────────────────────
+  // icon must be one of: "wrench", "cart", "sliders"
+
+  deliveryModes: [
+    { title: "Built", desc: "Products or capabilities developed in-house by internal teams", icon: "wrench" },
+    { title: "Bought", desc: "Products or platforms sourced from external vendors", icon: "cart" },
+    { title: "Configured", desc: "Existing platforms adapted or extended to meet needs", icon: "sliders" },
+  ],
+
+  // ── STANDARDS & PRINCIPLES ────────────────────────────────────────
+
+  standards: [
+    {
+      title: "Co-Creation",
+      color: "#1A3263",
+      iconType: "people",
+      summary: "Nothing about us without us — genuine partnership, not consultation",
+      principles: [
+        "Involve people affected by dementia at every stage: Discover, Define, Develop, Deliver, Evaluate",
+        "Nothing about us without us — genuine partnership, not consultation",
+        "Recruit diverse participants including carers, younger people with dementia, and ethnic minorities",
+        "Adapt methods: shorter sessions, visual prompts, flexible consent for fluctuating capacity",
+        "Close the loop — show participants how their input shaped the product",
+      ],
+      artefacts: [
+        "Co-creation participation tracker",
+        "Inclusive research recruitment guide",
+        "Feedback loop templates",
+        "Participant impact reports",
+      ],
+    },
+    {
+      title: "Accessibility",
+      color: "#2271B3",
+      iconType: "eye",
+      summary: "WCAG 2.2 AA minimum — designing for dementia means designing for all",
+      principles: [
+        "WCAG 2.2 AA as minimum standard across all digital products",
+        "Cognitive accessibility beyond technical compliance — designed for dementia",
+        "Designing for dementia means designing for all — simpler, clearer, more intuitive",
+        "Design system with accessible components, content templates, and patterns",
+        "Regular accessibility audits and usability testing with people with dementia",
+      ],
+      artefacts: [
+        "Accessibility audit checklist",
+        "Accessible component library",
+        "Cognitive accessibility guidelines",
+        "Usability testing protocols",
+      ],
+    },
+    {
+      title: "Security & Ethics",
+      color: "#3589C8",
+      iconType: "lock",
+      summary: "GDPR compliance, ethical AI, safeguarding vulnerable users",
+      principles: [
+        "Data protection and GDPR compliance across all platforms",
+        "Ethical AI principles — transparency, fairness, human oversight",
+        "Safeguarding standards for vulnerable users in digital services",
+        "Privacy by design in data capture, analytics, and integrations",
+        "Responsible handling of personal and health-related data",
+      ],
+      artefacts: [
+        "DPIA templates and register",
+        "Ethical AI assessment framework",
+        "Safeguarding policy for digital services",
+        "Data handling standards guide",
+      ],
+    },
+  ],
+
+  // ── COMMUNITIES OF PRACTICE ───────────────────────────────────────
+
+  communities: [
+    {
+      title: "Product",
+      who: "Product managers, owners, and analysts",
+      focus: "Strategy, prioritisation, and discovery practices",
+      color: "#1A3263",
+    },
+    {
+      title: "UXD",
+      who: "Designers, researchers, and content specialists",
+      focus: "Patterns, standards, and user insight",
+      color: "#2271B3",
+    },
+    {
+      title: "Engineering",
+      who: "Developers, architects, and QA",
+      focus: "Technical practices, tooling, and platform knowledge",
+      color: "#3589C8",
+    },
+  ],
+  communityPurpose: "Set standards, share best practice, discuss challenges, and build templates & guidance",
+};
+
+// ╔══════════════════════════════════════════════════════════════════════╗
+// ║                                                                    ║
+// ║   COMPONENT CODE — you shouldn't need to edit below this line      ║
+// ║                                                                    ║
+// ╚══════════════════════════════════════════════════════════════════════╝
+
+const C = {
+  darkBlue: "#1A3263", blue: "#2271B3", midBlue: "#3589C8",
+  lightBlue: "#4A9FD9", yellow: "#F0AB00", offWhite: "#F7FAFE",
+  white: "#FFFFFF", body: "#2D3748", grey: "#718096", lightGrey: "#E2E8F0",
+};
+
+// ── SVG Icons ───────────────────────────────────────────────────────
+const WrenchIcon = () => (
+  <svg viewBox="-12 -12 24 24" width="22" height="22" fill="white"><path d="M-8,-8 L-3,-3 L-3,0 L-8,5 L-6,7 L-1,2 L2,2 L8,8 L10,6 L4,0 L4,-3 L9,-8 L7,-8 L3,-4 L0,-4 L-4,-8 Z"/></svg>
+);
+const CartIcon = () => (
+  <svg viewBox="-2 -2 22 18" width="22" height="22" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M0 0h2.5l1.5 8h12l2-6H4"/><circle cx="7" cy="12" r="1.5" fill="white" stroke="none"/><circle cx="14" cy="12" r="1.5" fill="white" stroke="none"/></svg>
+);
+const SlidersIcon = () => (
+  <svg viewBox="-12 -8 24 16" width="22" height="22"><line x1="-9" y1="-5" x2="9" y2="-5" stroke="white" strokeWidth="1.8" strokeLinecap="round"/><line x1="-9" y1="0" x2="9" y2="0" stroke="white" strokeWidth="1.8" strokeLinecap="round"/><line x1="-9" y1="5" x2="9" y2="5" stroke="white" strokeWidth="1.8" strokeLinecap="round"/><circle cx="-3" cy="-5" r="2.5" fill="white"/><circle cx="4" cy="0" r="2.5" fill="white"/><circle cx="-5" cy="5" r="2.5" fill="white"/></svg>
+);
+const PeopleIcon = () => (
+  <svg viewBox="-2 -1 28 22" width="22" height="22"><circle cx="12" cy="5" r="3.5" fill="white"/><path d="M5 18c0-3.87 3.13-7 7-7s7 3.13 7 7" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/><circle cx="22" cy="7" r="2.5" fill="white" opacity=".7"/><path d="M19 18c0-2.5 1.3-4.7 3.2-6" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity=".7"/><circle cx="2" cy="7" r="2.5" fill="white" opacity=".7"/><path d="M5 18c0-2.5-1.3-4.7-3.2-6" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity=".7"/></svg>
+);
+const EyeIcon = () => (
+  <svg viewBox="-12 -9 24 18" width="22" height="22"><path d="M-10,0 C-6,-7 6,-7 10,0 C6,7 -6,7 -10,0 Z" fill="none" stroke="white" strokeWidth="1.6"/><circle cx="0" cy="0" r="3.5" fill="none" stroke="white" strokeWidth="1.6"/><circle cx="0" cy="0" r="1.5" fill="white"/></svg>
+);
+const LockIcon = () => (
+  <svg viewBox="-9 -10 18 24" width="22" height="22"><rect x="-7" y="-2" width="14" height="11" rx="2" fill="none" stroke="white" strokeWidth="1.6"/><path d="M-4,-2 L-4,-5 C-4,-8 4,-8 4,-5 L4,-2" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round"/><circle cx="0" cy="3.5" r="1.5" fill="white"/></svg>
+);
+
+const dmIconMap = { wrench: WrenchIcon, cart: CartIcon, sliders: SlidersIcon };
+const stdIconMap = { people: PeopleIcon, eye: EyeIcon, lock: LockIcon };
+
+const ChevronDown = ({ open }) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ transition: "transform 0.25s", transform: open ? "rotate(180deg)" : "rotate(0)" }}>
+    <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const ExpandPanel = ({ children, open }) => (
+  <div style={{ maxHeight: open ? 600 : 0, overflow: "hidden", transition: "max-height 0.35s ease" }}>{children}</div>
+);
+
+function App() {
+  const [expandedHier, setExpandedHier] = useState(null);
+  const [expandedWf, setExpandedWf] = useState(null);
+  const [expandedDm, setExpandedDm] = useState(null);
+  const [expandedStd, setExpandedStd] = useState(null);
+  const [expandedCop, setExpandedCop] = useState(null);
+
+  const toggle = (setter, current, idx) => setter(current === idx ? null : idx);
+
+  return (
+    <div style={{ background: C.offWhite, minHeight: "100vh", color: C.body }}>
+      {/* HEADER */}
+      <div style={{ background: "linear-gradient(135deg, " + C.darkBlue + ", #1E3A6E)", padding: "28px 20px 24px", borderBottom: "4px solid " + C.yellow }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div>
+            <h1 style={{ margin: 0, fontSize: 28, fontWeight: 800, color: C.white, fontFamily: "Georgia, serif", letterSpacing: -0.5 }}>{CONTENT.title}</h1>
+            <p style={{ margin: "6px 0 0", fontSize: 13, color: "#A0B4CC" }}>{CONTENT.subtitle}</p>
+          </div>
+          <div style={{ fontSize: 15, fontWeight: 600, color: "#A0B4CC", textAlign: "right", paddingTop: 6 }}>Kjell Eldor, 2026</div>
+        </div>
+      </div>
+
+      <div style={{ padding: "24px 20px 32px", maxWidth: 1400, margin: "0 auto" }}>
+
+        {/* ── PRODUCT HIERARCHY ────────────────────────────────── */}
+        <div style={{ marginBottom: 28 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, color: C.grey, marginBottom: 10 }}>Product Hierarchy</div>
+          <div style={{ display: "flex", gap: 0, borderRadius: 10, overflow: "hidden" }}>
+            {CONTENT.hierarchy.map((lv, i) => (
+              <button key={i} onClick={() => toggle(setExpandedHier, expandedHier, i)} style={{
+                flex: 1, background: lv.color, border: "none", padding: "16px 12px 20px", cursor: "pointer",
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                position: "relative", transition: "filter 0.2s",
+                filter: expandedHier === i ? "brightness(1.15)" : "brightness(1)",
+                outline: expandedHier === i ? "3px solid " + C.yellow : "none", outlineOffset: -3,
+              }}>
+                <span style={{ fontSize: 14, fontWeight: 700, color: lv.textDark ? C.darkBlue : C.white }}>{lv.name}</span>
+                <span style={{ position: "absolute", bottom: 4, color: lv.textDark ? C.darkBlue : "rgba(255,255,255,0.6)" }}><ChevronDown open={expandedHier === i}/></span>
+              </button>
+            ))}
+          </div>
+          <ExpandPanel open={expandedHier !== null}>
+            {expandedHier !== null && (() => {
+              const lv = CONTENT.hierarchy[expandedHier];
+              return (
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, padding: "16px 0 8px", animation: "fadeIn 0.3s ease" }}>
+                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + lv.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                    <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>{lv.detailTitle}</h4>
+                    <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
+                      {lv.details.map((d, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{d}</li>)}
+                    </ul>
+                  </div>
+                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + lv.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                    <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>Key outputs</h4>
+                    <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
+                      {lv.outputs.map((o, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{o}</li>)}
+                    </ul>
+                  </div>
+                </div>
+              );
+            })()}
+          </ExpandPanel>
+        </div>
+
+        {/* ── WORKFLOWS + DELIVERY CONTEXTS ─────────────────────── */}
+        <div style={{ marginBottom: 28 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, color: C.grey, marginBottom: 10 }}>Cross-Cutting Workflows</div>
+          {/* Card row — buttons only, no expand panels inside */}
+          <div style={{ display: "flex", gap: 12, alignItems: "stretch" }}>
+            {CONTENT.workflows.map((wf, i) => (
+              <button key={i} onClick={() => { setExpandedDm(null); toggle(setExpandedWf, expandedWf, i); }} style={{
+                flex: 1, background: C.white, border: "none", borderRadius: 10, padding: 0, cursor: "pointer",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.06)", textAlign: "left", overflow: "hidden",
+                outline: expandedWf === i ? "3px solid " + C.yellow : "none", display: "flex", flexDirection: "column",
+              }}>
+                <div style={{ height: 4, background: C.blue }}/>
+                <div style={{ padding: "16px 18px 14px", flex: 1, display: "flex", flexDirection: "column" }}>
+                  <div style={{ fontSize: 28, fontWeight: 800, color: C.lightGrey, lineHeight: 1 }}>{wf.num}</div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: C.darkBlue, marginTop: 6 }}>{wf.title}</div>
+                  <div style={{ fontSize: 11, color: C.grey, marginTop: 4, lineHeight: 1.4, flex: 1 }}>{wf.desc}</div>
+                  <div style={{ display: "flex", justifyContent: "flex-end", color: C.grey, marginTop: 8 }}><ChevronDown open={expandedWf === i}/></div>
+                </div>
+              </button>
+            ))}
+
+            {/* Delivery Contexts card */}
+            <button onClick={() => { setExpandedWf(null); toggle(setExpandedDm, expandedDm, 0); }} style={{
+              flex: 1, background: C.white, border: "none", borderRadius: 10, padding: 0, cursor: "pointer",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.06)", textAlign: "left", overflow: "hidden",
+              outline: expandedDm === 0 ? "3px solid " + C.yellow : "none", display: "flex", flexDirection: "column",
+            }}>
+              <div style={{ height: 4, background: C.darkBlue }}/>
+              <div style={{ padding: "16px 18px 14px", flex: 1, display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", gap: 6, marginBottom: 2 }}>
+                  {CONTENT.deliveryModes.map((dm, j) => {
+                    const Ic = dmIconMap[dm.icon] || (() => null);
+                    return <div key={j} style={{ width: 28, height: 28, borderRadius: "50%", background: C.darkBlue, display: "flex", alignItems: "center", justifyContent: "center" }}><Ic/></div>;
+                  })}
+                </div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: C.darkBlue, marginTop: 6 }}>Delivery Contexts</div>
+                <div style={{ fontSize: 11, color: C.grey, marginTop: 4, lineHeight: 1.4, flex: 1 }}>Three contexts for product delivery requiring varying workflows</div>
+                <div style={{ display: "flex", justifyContent: "flex-end", color: C.grey, marginTop: 8 }}><ChevronDown open={expandedDm === 0}/></div>
+              </div>
+            </button>
+          </div>
+
+          {/* Expand panels — rendered BELOW the card row */}
+          <ExpandPanel open={expandedWf !== null}>
+            {expandedWf !== null && (() => {
+              const wf = CONTENT.workflows[expandedWf];
+              return (
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, padding: "12px 0 0", animation: "fadeIn 0.3s ease" }}>
+                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + C.blue, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                    <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>Key Moments</h4>
+                    <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
+                      {wf.keyMoments.map((m, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{m}</li>)}
+                    </ul>
+                  </div>
+                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + C.blue, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                    <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>Artefacts</h4>
+                    <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
+                      {wf.artefacts.map((a, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{a}</li>)}
+                    </ul>
+                  </div>
+                </div>
+              );
+            })()}
+          </ExpandPanel>
+          <ExpandPanel open={expandedDm === 0}>
+            <div style={{ padding: "12px 0 0", animation: "fadeIn 0.3s ease" }}>
+              <div style={{ background: C.white, borderRadius: 10, padding: "16px 20px", borderTop: "3px solid " + C.darkBlue, boxShadow: "0 2px 8px rgba(0,0,0,0.06)", display: "flex", gap: 16 }}>
+                {CONTENT.deliveryModes.map((dm, i) => {
+                  const Icon = dmIconMap[dm.icon] || (() => null);
+                  return (
+                    <div key={i} style={{ flex: 1, display: "flex", alignItems: "center", gap: 12 }}>
+                      <div style={{ width: 36, height: 36, borderRadius: "50%", background: C.darkBlue, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Icon/></div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: C.darkBlue }}>{dm.title}</div>
+                        <div style={{ fontSize: 11, color: C.grey, lineHeight: 1.3 }}>{dm.desc}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </ExpandPanel>
+        </div>
+
+        {/* ── UNDERPINNING LINE ────────────────────────────────── */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+          <div style={{ flex: 1, height: 1, background: C.lightGrey }}/>
+          <span style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, color: C.grey, whiteSpace: "nowrap" }}>Underpinned by embedded standards & principles</span>
+          <div style={{ flex: 1, height: 1, background: C.lightGrey }}/>
+        </div>
+
+        {/* ── STANDARDS ────────────────────────────────────────── */}
+        <div style={{ marginBottom: 28 }}>
+          <div style={{ display: "flex", gap: 8, alignItems: "stretch" }}>
+            {CONTENT.standards.map((std, i) => {
+              const Icon = stdIconMap[std.iconType] || (() => null);
+              return (
+                <button key={i} onClick={() => toggle(setExpandedStd, expandedStd, i)} style={{
+                  flex: 1, background: std.color, border: "none", borderRadius: 10, padding: "16px 20px", cursor: "pointer",
+                  display: "flex", alignItems: "flex-start", gap: 14, textAlign: "left",
+                  outline: expandedStd === i ? "3px solid " + C.yellow : "none",
+                }}>
+                  <div style={{ width: 36, height: 36, borderRadius: "50%", background: "rgba(255,255,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Icon/></div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: C.white, marginBottom: 4 }}>{std.title}</div>
+                    <div style={{ fontSize: 11, color: "rgba(255,255,255,0.8)", lineHeight: 1.4 }}>{std.summary}</div>
+                  </div>
+                  <span style={{ color: "rgba(255,255,255,0.6)", marginTop: 2 }}><ChevronDown open={expandedStd === i}/></span>
+                </button>
+              );
+            })}
+          </div>
+          <ExpandPanel open={expandedStd !== null}>
+            {expandedStd !== null && (() => {
+              const std = CONTENT.standards[expandedStd];
+              return (
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, padding: "12px 0 0", animation: "fadeIn 0.3s ease" }}>
+                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + std.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                    <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>Principles</h4>
+                    <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
+                      {std.principles.map((p, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{p}</li>)}
+                    </ul>
+                  </div>
+                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + std.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                    <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>Artefacts</h4>
+                    <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
+                      {std.artefacts.map((a, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{a}</li>)}
+                    </ul>
+                  </div>
+                </div>
+              );
+            })()}
+          </ExpandPanel>
+        </div>
+
+        {/* ── COMMUNITIES OF PRACTICE ──────────────────────────── */}
+        <div style={{ position: "relative" }}>
+          <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, color: C.grey, marginBottom: 10 }}>Communities of Practice</div>
+          <div style={{ textAlign: "center", marginBottom: -6, position: "relative", zIndex: 2 }}>
+            <span style={{ background: C.yellow, color: C.darkBlue, fontSize: 10, fontWeight: 700, padding: "4px 16px", borderRadius: 12, display: "inline-block" }}>
+              Involvement Panel — spanning all communities
+            </span>
+          </div>
+          <div style={{ border: "2px dashed " + C.yellow, borderRadius: 12, padding: "18px 10px 10px", display: "flex", gap: 10 }}>
+            {CONTENT.communities.map((cop, i) => (
+              <div key={i} style={{ flex: 1 }}>
+                <button onClick={() => toggle(setExpandedCop, expandedCop, i)} style={{
+                  width: "100%", background: C.white, border: "none", borderRadius: 10, padding: "14px 18px", cursor: "pointer",
+                  textAlign: "left", borderLeft: "4px solid " + cop.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                  outline: expandedCop === i ? "3px solid " + C.yellow : "none",
+                }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                    <div>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: cop.color }}>{cop.title}</div>
+                      <div style={{ fontSize: 11, color: C.body, marginTop: 3 }}>{cop.who}</div>
+                    </div>
+                    <span style={{ color: C.grey }}><ChevronDown open={expandedCop === i}/></span>
+                  </div>
+                </button>
+                <ExpandPanel open={expandedCop === i}>
+                  <div style={{ background: "#EDF2F7", borderRadius: "0 0 10px 10px", padding: "12px 18px 14px", marginTop: -4, borderLeft: "4px solid " + cop.color, boxShadow: "inset 0 2px 4px rgba(0,0,0,0.04)" }}>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: cop.color, marginBottom: 6 }}>Community focus areas</div>
+                    <div style={{ fontSize: 12, color: C.body, lineHeight: 1.6 }}>
+                      <p style={{ margin: "0 0 6px" }}><strong>Who:</strong> {cop.who}</p>
+                      <p style={{ margin: "0 0 6px" }}><strong>Focus:</strong> {cop.focus}</p>
+                      <p style={{ margin: 0 }}><strong>Purpose:</strong> {CONTENT.communityPurpose}</p>
+                    </div>
+                  </div>
+                </ExpandPanel>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FOOTER */}
+        <p style={{ textAlign: "center", fontSize: 11, color: C.grey, fontStyle: "italic", marginTop: 24 }}>
+          Together, this creates a scalable and transparent way to manage the product portfolio and deliver meaningful outcomes.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
