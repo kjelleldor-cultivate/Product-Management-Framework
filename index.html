@@ -20,7 +20,17 @@
 <div id="root"></div>
 
 <script type="text/babel">
-const { useState } = React;
+const { useState, useEffect } = React;
+
+function useIsMobile(breakpoint = 768) {
+  const [mobile, setMobile] = useState(window.innerWidth < breakpoint);
+  useEffect(() => {
+    const onResize = () => setMobile(window.innerWidth < breakpoint);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [breakpoint]);
+  return mobile;
+}
 
 // ╔══════════════════════════════════════════════════════════════════════╗
 // ║                                                                    ║
@@ -336,37 +346,39 @@ function App() {
   const [expandedDm, setExpandedDm] = useState(null);
   const [expandedStd, setExpandedStd] = useState(null);
   const [expandedCop, setExpandedCop] = useState(null);
+  const mobile = useIsMobile();
 
   const toggle = (setter, current, idx) => setter(current === idx ? null : idx);
 
   return (
     <div style={{ background: C.offWhite, minHeight: "100vh", color: C.body }}>
       {/* HEADER */}
-      <div style={{ background: "linear-gradient(135deg, " + C.darkBlue + ", #1E3A6E)", padding: "28px 20px 24px", borderBottom: "4px solid " + C.yellow }}>
-        <div style={{ maxWidth: 1400, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+      <div style={{ background: "linear-gradient(135deg, " + C.darkBlue + ", #1E3A6E)", padding: mobile ? "20px 14px 18px" : "28px 20px 24px", borderBottom: "4px solid " + C.yellow }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto", display: "flex", flexDirection: mobile ? "column" : "row", justifyContent: "space-between", alignItems: mobile ? "flex-start" : "flex-start", gap: mobile ? 8 : 0 }}>
           <div>
-            <h1 style={{ margin: 0, fontSize: 28, fontWeight: 800, color: C.white, fontFamily: "Georgia, serif", letterSpacing: -0.5 }}>{CONTENT.title}</h1>
-            <p style={{ margin: "6px 0 0", fontSize: 13, color: "#A0B4CC" }}>{CONTENT.subtitle}</p>
+            <h1 style={{ margin: 0, fontSize: mobile ? 20 : 28, fontWeight: 800, color: C.white, fontFamily: "Georgia, serif", letterSpacing: -0.5 }}>{CONTENT.title}</h1>
+            <p style={{ margin: "6px 0 0", fontSize: mobile ? 11 : 13, color: "#A0B4CC" }}>{CONTENT.subtitle}</p>
           </div>
-          <div style={{ fontSize: 15, fontWeight: 600, color: "#A0B4CC", textAlign: "right", paddingTop: 6 }}>Kjell Eldor, 2026</div>
+          <div style={{ fontSize: mobile ? 12 : 15, fontWeight: 600, color: "#A0B4CC", textAlign: mobile ? "left" : "right", paddingTop: mobile ? 0 : 6 }}>Kjell Eldor, 2026</div>
         </div>
       </div>
 
-      <div style={{ padding: "24px 20px 32px", maxWidth: 1400, margin: "0 auto" }}>
+      <div style={{ padding: mobile ? "16px 10px 24px" : "24px 20px 32px", maxWidth: 1400, margin: "0 auto" }}>
 
         {/* ── PRODUCT HIERARCHY ────────────────────────────────── */}
         <div style={{ marginBottom: 28 }}>
           <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, color: C.grey, marginBottom: 10 }}>Product Hierarchy</div>
-          <div style={{ display: "flex", gap: 0, borderRadius: 10, overflow: "hidden" }}>
+          <div style={mobile ? { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4, borderRadius: 10, overflow: "hidden" } : { display: "flex", gap: 0, borderRadius: 10, overflow: "hidden" }}>
             {CONTENT.hierarchy.map((lv, i) => (
               <button key={i} onClick={() => toggle(setExpandedHier, expandedHier, i)} style={{
-                flex: 1, background: lv.color, border: "none", padding: "16px 12px 20px", cursor: "pointer",
+                flex: mobile ? undefined : 1, background: lv.color, border: "none", padding: mobile ? "12px 8px 18px" : "16px 12px 20px", cursor: "pointer",
                 display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-                position: "relative", transition: "filter 0.2s",
+                position: "relative", transition: "filter 0.2s", borderRadius: mobile ? 8 : 0,
                 filter: expandedHier === i ? "brightness(1.15)" : "brightness(1)",
                 outline: expandedHier === i ? "3px solid " + C.yellow : "none", outlineOffset: -3,
+                gridColumn: mobile && i === 4 ? "1 / -1" : undefined,
               }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: lv.textDark ? C.darkBlue : C.white }}>{lv.name}</span>
+                <span style={{ fontSize: mobile ? 12 : 14, fontWeight: 700, color: lv.textDark ? C.darkBlue : C.white }}>{lv.name}</span>
                 <span style={{ position: "absolute", bottom: 4, color: lv.textDark ? C.darkBlue : "rgba(255,255,255,0.6)" }}><ChevronDown open={expandedHier === i}/></span>
               </button>
             ))}
@@ -375,14 +387,14 @@ function App() {
             {expandedHier !== null && (() => {
               const lv = CONTENT.hierarchy[expandedHier];
               return (
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, padding: "16px 0 8px", animation: "fadeIn 0.3s ease" }}>
-                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + lv.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: mobile ? 10 : 16, padding: "16px 0 8px", animation: "fadeIn 0.3s ease" }}>
+                  <div style={{ background: C.white, borderRadius: 10, padding: mobile ? "16px 16px" : "20px 24px", borderTop: "3px solid " + lv.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
                     <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>{lv.detailTitle}</h4>
                     <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
                       {lv.details.map((d, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{d}</li>)}
                     </ul>
                   </div>
-                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + lv.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                  <div style={{ background: C.white, borderRadius: 10, padding: mobile ? "16px 16px" : "20px 24px", borderTop: "3px solid " + lv.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
                     <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>Key outputs</h4>
                     <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
                       {lv.outputs.map((o, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{o}</li>)}
@@ -398,7 +410,7 @@ function App() {
         <div style={{ marginBottom: 28 }}>
           <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, color: C.grey, marginBottom: 10 }}>Cross-Cutting Workflows</div>
           {/* Card row — buttons only, no expand panels inside */}
-          <div style={{ display: "flex", gap: 12, alignItems: "stretch" }}>
+          <div style={{ display: mobile ? "grid" : "flex", gridTemplateColumns: mobile ? "1fr 1fr" : undefined, gap: mobile ? 8 : 12, alignItems: "stretch" }}>
             {CONTENT.workflows.map((wf, i) => (
               <button key={i} onClick={() => { setExpandedDm(null); toggle(setExpandedWf, expandedWf, i); }} style={{
                 flex: 1, background: C.white, border: "none", borderRadius: 10, padding: 0, cursor: "pointer",
@@ -441,14 +453,14 @@ function App() {
             {expandedWf !== null && (() => {
               const wf = CONTENT.workflows[expandedWf];
               return (
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, padding: "12px 0 0", animation: "fadeIn 0.3s ease" }}>
-                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + C.blue, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: mobile ? 10 : 16, padding: "12px 0 0", animation: "fadeIn 0.3s ease" }}>
+                  <div style={{ background: C.white, borderRadius: 10, padding: mobile ? "16px 16px" : "20px 24px", borderTop: "3px solid " + C.blue, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
                     <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>Key Moments</h4>
                     <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
                       {wf.keyMoments.map((m, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{m}</li>)}
                     </ul>
                   </div>
-                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + C.blue, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                  <div style={{ background: C.white, borderRadius: 10, padding: mobile ? "16px 16px" : "20px 24px", borderTop: "3px solid " + C.blue, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
                     <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>Artefacts</h4>
                     <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
                       {wf.artefacts.map((a, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{a}</li>)}
@@ -460,7 +472,7 @@ function App() {
           </ExpandPanel>
           <ExpandPanel open={expandedDm === 0}>
             <div style={{ padding: "12px 0 0", animation: "fadeIn 0.3s ease" }}>
-              <div style={{ background: C.white, borderRadius: 10, padding: "16px 20px", borderTop: "3px solid " + C.darkBlue, boxShadow: "0 2px 8px rgba(0,0,0,0.06)", display: "flex", gap: 16 }}>
+              <div style={{ background: C.white, borderRadius: 10, padding: mobile ? "12px 14px" : "16px 20px", borderTop: "3px solid " + C.darkBlue, boxShadow: "0 2px 8px rgba(0,0,0,0.06)", display: "flex", flexDirection: mobile ? "column" : "row", gap: mobile ? 12 : 16 }}>
                 {CONTENT.deliveryModes.map((dm, i) => {
                   const Icon = dmIconMap[dm.icon] || (() => null);
                   return (
@@ -481,13 +493,13 @@ function App() {
         {/* ── UNDERPINNING LINE ────────────────────────────────── */}
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
           <div style={{ flex: 1, height: 1, background: C.lightGrey }}/>
-          <span style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, color: C.grey, whiteSpace: "nowrap" }}>Underpinned by embedded standards & principles</span>
+          <span style={{ fontSize: mobile ? 8 : 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: mobile ? 1 : 2, color: C.grey, whiteSpace: mobile ? "normal" : "nowrap", textAlign: "center" }}>Underpinned by embedded standards & principles</span>
           <div style={{ flex: 1, height: 1, background: C.lightGrey }}/>
         </div>
 
         {/* ── STANDARDS ────────────────────────────────────────── */}
         <div style={{ marginBottom: 28 }}>
-          <div style={{ display: "flex", gap: 8, alignItems: "stretch" }}>
+          <div style={{ display: "flex", flexDirection: mobile ? "column" : "row", gap: 8, alignItems: "stretch" }}>
             {CONTENT.standards.map((std, i) => {
               const Icon = stdIconMap[std.iconType] || (() => null);
               return (
@@ -510,14 +522,14 @@ function App() {
             {expandedStd !== null && (() => {
               const std = CONTENT.standards[expandedStd];
               return (
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, padding: "12px 0 0", animation: "fadeIn 0.3s ease" }}>
-                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + std.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: mobile ? 10 : 16, padding: "12px 0 0", animation: "fadeIn 0.3s ease" }}>
+                  <div style={{ background: C.white, borderRadius: 10, padding: mobile ? "16px 16px" : "20px 24px", borderTop: "3px solid " + std.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
                     <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>Principles</h4>
                     <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
                       {std.principles.map((p, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{p}</li>)}
                     </ul>
                   </div>
-                  <div style={{ background: C.white, borderRadius: 10, padding: "20px 24px", borderTop: "3px solid " + std.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+                  <div style={{ background: C.white, borderRadius: 10, padding: mobile ? "16px 16px" : "20px 24px", borderTop: "3px solid " + std.color, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
                     <h4 style={{ margin: "0 0 10px", fontSize: 14, fontWeight: 700, color: C.darkBlue }}>Artefacts</h4>
                     <ul style={{ margin: 0, paddingLeft: 18, listStyleType: "disc" }}>
                       {std.artefacts.map((a, j) => <li key={j} style={{ fontSize: 13, color: C.body, marginBottom: 5, lineHeight: 1.5 }}>{a}</li>)}
@@ -537,7 +549,7 @@ function App() {
               Involvement Panel — spanning all communities
             </span>
           </div>
-          <div style={{ border: "2px dashed " + C.yellow, borderRadius: 12, padding: "18px 10px 10px", display: "flex", gap: 10 }}>
+          <div style={{ border: "2px dashed " + C.yellow, borderRadius: 12, padding: mobile ? "16px 8px 8px" : "18px 10px 10px", display: "flex", flexDirection: mobile ? "column" : "row", gap: mobile ? 8 : 10 }}>
             {CONTENT.communities.map((cop, i) => (
               <div key={i} style={{ flex: 1 }}>
                 <button onClick={() => toggle(setExpandedCop, expandedCop, i)} style={{
